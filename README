@@ -1,0 +1,78 @@
+
+PROYECTO CONSULTA DE API
+
+MovieBug - Sitio de Películas 🎬
+
+
+MovieBug es un sitio web que te permite explorar y descubrir películas populares de una manera fácil y dinámica. Utiliza la API de The Movie Database (TMDb) para cargar datos en tiempo real sobre las películas más populares.
+
+QUE PODEMOS HACER?
+ Al acceder despliega las 20 Películas mas Populares de la semana, ademas de una amplia selección de películas populares.
+Mediante una Paginación Dinámica, permite cargar más películas de forma dinámica con botones de paginación.
+Su Barra de Navegación es  Responsiva y adaptable a diferentes tamaños de pantalla automáticamente.
+
+TECNOLOGIAS UTILIZADAS
+ HTML
+ CSS (con Bootstrap)
+ JavaScript
+
+Estructura de Carpetas
+html: Contiene el index del proyecto con la estructura de base
+css: Contiene el archivo de estilos CSS y otras hojas de estilo.
+img: Almacena las imágenes utilizadas en el proyecto.
+JS: Contiene el archivo JavaScript que maneja la carga dinámica de películas.
+
+FUNCIONAMIENTO
+ Barra de Navegación: Permite navegar entre las secciones del sitio.
+ Exploración de Películas: Muestra carteles de películas con títulos.
+ Paginación: Permite cargar más películas con botones de "Anterior" y "Siguiente".
+Barra Lateral: Proporciona una alternativa de navegación en dispositivos móviles.
+
+Uso del JavaScript
+El archivo `apimovie.js` utiliza la API de The Movie Database para obtener datos dinámicamente. El código maneja eventos de los botones de paginación y carga las películas correspondientes.
+
+```javascript
+MANEJO DINÁMICO DE LA API
+
+
+const cargarPeliculas = async () => {
+    
+    try {
+        Realiza la petición a la API de TMDb
+        const respuesta = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=32c63ed5142a6572d1bdcaaecb61d6c1&language=es-ES&page=${pagina}`);
+
+    Verifica el tipo de respuesta obtenida
+        if (respuesta.status === 200) {
+    Convierte la respuesta a formato JSON
+            const datos = await respuesta.json();
+
+            let peliculas = '';
+            // Itera sobre los resultados y construye la estructura HTML dinámica
+            datos.results.forEach(pelicula => {
+                peliculas += `
+                    <div class="pelicula">
+                        <img class="poster" src="https://image.tmdb.org/t/p/w500/${pelicula.poster_path}">
+                        <h3 class="titulo">${pelicula.title}</h3>
+                    </div>
+                `;
+            });
+
+    Actualiza el contenido del contenedor en la interfaz de usuario
+            document.getElementById('contenedor').innerHTML = peliculas;
+            
+        } else if (respuesta.status === 401) {
+            console.log('Error de clave');
+        } else if (respuesta.status === 404) {
+            console.log('La película no existe');
+        } else {
+            console.log('Error no definido');
+        }
+
+    } catch (error) {    
+        console.log(error);
+    }   
+}
+
+Llama a la función para cargar películas al cargar la página
+cargarPeliculas();
+
