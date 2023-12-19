@@ -1,0 +1,234 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background: #c3e3d3f5;
+	color: #2a1029;
+}
+
+.contenedor {
+	width: 90%;
+	max-width: 1000px;
+	margin: 40px auto 100px auto;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr); 
+	gap: 40px;
+}
+
+.contenedor .pelicula {
+	text-align: center;
+}
+
+.contenedor .pelicula .titulo {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.contenedor .pelicula .poster {
+	width: 100%;
+	margin-bottom: 10px;
+	border-radius: 15px;
+}
+
+.paginacion {
+	position: fixed;
+	bottom: 0;
+	background: #282f5f61;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	padding: 10px;
+}
+
+.paginacion button {
+	cursor: pointer;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	height: 50px;
+	width: 200px;
+	background: #174425;
+	color: #fff;
+	border-radius: 100px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	transition: .3s all ease-in-out;
+    transition: 0.5s box-shadow ease-in-out;
+}
+
+.paginacion button:active {
+    transform: scale(0.96);
+}
+
+.paginacion button:hover {
+	background: #330858;
+    color:antiquewhite;
+    box-shadow: 0 0 12px 2px #ffeadd;
+}
+
+
+/* ESTILOS DE LA NAVBAR */
+.navbar {
+	background: #174425;
+	padding: 15px 0;
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.logo {
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 24px;
+}
+
+.nav-list {
+	list-style: none;
+	display: flex;
+	gap: 20px;
+}
+
+.nav-item a {
+	text-decoration: none;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	transition: color 0.3s ease-in-out;
+}
+
+.nav-item a:hover {
+	color: #c3e3d3;
+}
+
+.logo-container {
+	display: flex;
+	align-items: center;
+}
+
+.logo-container img {
+	width: 70px; /* LOGO */
+	margin-right: 20px;
+}
+
+.search-bar {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+}
+
+.search-bar input {
+	padding: 8px;
+	border: none;
+	border-radius: 5px;
+}
+
+.search-bar button {
+	padding: 8px 12px;
+	border: none;
+	border-radius: 5px;
+	background-color: #085158;
+	color: #fff;
+	margin-left: 8px;
+	cursor: pointer;
+}
+
+.nav-list {
+	list-style: none;
+	display: flex;
+	gap: 40px; /* Espacio lista de navegación */
+}
+
+.nav-item a {
+	text-decoration: none;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	transition: color 0.3s ease-in-out;
+}
+
+.nav-item a:hover {
+	color: #c3e3d3;
+}
+
+/* Añadido para el menú desplegable */
+.nav-item.dropdown {
+	position: relative; /* Asegura que el menú desplegable sea relativo a este elemento */
+  }
+  
+  .nav-link.dropdown-toggle::after {
+	content: ''; /* Añade un triángulo para indicar que es un menú desplegable */
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid #fff;
+	margin-left: 5px;
+  }
+  
+  .dropdown-menu {
+	position: absolute; /* Asegura que el menú desplegable sea posicionado absolutamente */
+	top: 100%; /* Posiciona el menú debajo del enlace */
+	left: 0;
+	background-color: #174425; /* Fondo del menú desplegable */
+	border: 1px solid #085158; /* Borde del menú desplegable */
+	border-radius: 5px;
+	display: none; /* Inicialmente oculto */
+	z-index: 1000; /* Z-index para que aparezca sobre otros elementos */
+  }
+  
+  .dropdown-menu a {
+	color: #fff;
+	padding: 10px;
+	text-decoration: none;
+	display: block;
+  }
+  
+  .dropdown-menu a:hover {
+	background-color: #085158;
+  }
+  
+  /* Mostrar el menú desplegable al pasar el ratón sobre el elemento padre */
+  .nav-item.dropdown:hover .dropdown-menu {
+	display: block;
+  }
+
+/* Media Query para pantallas pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+    .nav-list {
+        display: none; /* Oculta la lista de navegación en pantallas pequeñas */
+        flex-direction: column; /* Cambia la dirección del flexbox a columna */
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #174425;
+        border-radius: 5px;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .nav-list.active {
+        display: flex; /* Muestra la lista cuando se activa */
+        flex-direction: column;
+    }
+
+    .nav-item {
+        margin: 10px 0; /* Agrega espacio entre elementos de la lista */
+    }
+}
